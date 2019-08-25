@@ -76,12 +76,13 @@ class gsRetail(Resource):
         field_value = [field_value, field_value2, field_value3]
         id_field = args['idField'] if args['idField'] else "id"
         if option == "getProducts":
-            option_parser.add_argument('productId',
-                                       required=False,
-                                       location=arg_location)
+            option_parser.add_argument('search',
+                                       required=True,
+                                       location=arg_location,
+                                       type=str)
             args = option_parser.parse_args()
-            product_id = args['productId'] if 'productId' in args else None
-            response = s.get_products(product_id, page, output_type, id_field, by_field, field_value)
+            search = args['search'] if 'search' in args else None
+            response = s.get_products(search, page, output_type, id_field, by_field, field_value)
         if bool(response):
             return response
         else:

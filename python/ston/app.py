@@ -13,4 +13,4 @@ api = Api(webapp)
 CORS(webapp, resources={r"/*": {"origins": "*"}})
 
 # Mailer
-api.add_resource(gsRetail, '/v1/gsChallengeRetail')
+api.add_resource(gsRetail, '/v1/gsChallengeRetail/<string:option>')
