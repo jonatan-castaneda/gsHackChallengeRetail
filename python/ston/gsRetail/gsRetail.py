@@ -83,6 +83,21 @@ class gsRetail(Resource):
             args = option_parser.parse_args()
             search = args['search'] if 'search' in args else None
             response = s.get_products(search, page, output_type, id_field, by_field, field_value)
+        elif option == "getCategories":
+            option_parser.add_argument('level',
+                                       required=True,
+                                       location=arg_location)
+            option_parser.add_argument('category_one',
+                                       required=False,
+                                       location=arg_location)
+            option_parser.add_argument('category_two',
+                                       required=False,
+                                       location=arg_location)
+            args = option_parser.parse_args()
+            level = args['level'] if 'level' in args else None
+            category_one = args['category_one'] if 'category_one' in args else None
+            category_two = args['category_two'] if 'category_two' in args else None
+            response = s.getCategories(level,category_one,category_two)
         if bool(response):
             return response
         else:
